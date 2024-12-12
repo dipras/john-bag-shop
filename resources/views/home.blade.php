@@ -2,8 +2,8 @@
 
 @section("content")
 <div class="flex flex-row">
-    <div class="w-[300px] bg-[#FEFFFE] px-8 flex flex-col gap-8">
-        <h1 class="text-center text-2xl font-bold text-[#434B6A]">{{ $web_title }}</h1>
+    <div class="w-[300px] bg-[#FEFFFE] px-8 py-4 flex flex-col gap-8">
+        <h1 class="text-center text-2xl font-bold text-[#434B6A]">JOHN BAG SHOP</h1>
         <div class="h-[200px] w-[200px] rounded-[50%] bg-[#F3F3F3] flex justify-center items-center self-center">
             <x-far-user class="h-[120px]" fill="#434B6A" />
         </div>
@@ -36,11 +36,12 @@
         </div>
     </div>
     <div class="flex-1 bg-[#F3F3F3] h-[100vh] pl-2">
-        <div class="h-[50px] bg-white flex flex-row justify-end px-5 items-center">
-            <div class="flex gap-2">
+        <div class="h-[50px] bg-white flex flex-row justify-between px-5 items-center">
+            <p>{{ $web_title }}</p>
+            <a href="/auth/logout" class="flex gap-2">
                 <x-tabler-logout />
-                <a href="/auth/logout" class="text-[#808080]">LOGOUT</a>
-            </div>
+                <p class="text-[#808080]">LOGOUT</p>
+            </a>
         </div>
         @yield("home_content")
     </div>
