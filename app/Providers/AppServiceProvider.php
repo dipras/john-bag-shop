@@ -22,6 +22,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('web_title', WebInfo::where("name", "web_title")->first()->value);
     }
 }
