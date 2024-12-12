@@ -8,7 +8,7 @@ use App\Http\Middleware\DefaultViewData;
 Route::get('/', [DashboardController::class, "index"])->middleware([
     "auth",
     DefaultViewData::class
-]);
+])->name("dashboard");
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, "login"])->name("login");
