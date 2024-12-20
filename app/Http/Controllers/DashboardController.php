@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class DashboardController extends Controller
 {
@@ -11,6 +12,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view("dashboard");
+        $category_count = Category::count();
+        return view("dashboard", ["category_count" => $category_count]);
     }
 }
