@@ -9,14 +9,14 @@
         </div>
         <p class="text-lg font-bold text-center">{{$user_info->name}}</p>
         <div class="flex flex-col w-full gap-4" id="sidebar">
-            <a class="flex flex-row items-center gap-4 p-2 {{ (strpos(Route::currentRouteName(), 'dashboard') == 0) ? 'active-navbar' : '' }}" href="/">
+            <a class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'dashboard' ? 'active-navbar' : '' }}" href="/">
                 <x-antdesign-home-o class="h-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Dashboard</p>
             </a>
-            <div class="flex flex-row items-center gap-4 p-2">
+            <a href="/category" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'category' ? 'active-navbar' : '' }}">
                 <x-antdesign-tag-o class="h-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Kategori</p>
-            </div>
+            </a>
             <div class="flex flex-row items-center gap-4 p-2">
                 <x-bi-box class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Produk</p>
