@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\DefaultViewData;
 
 Route::middleware(([
@@ -18,6 +19,9 @@ Route::middleware(([
         Route::get("/edit/{id}", [CategoryController::class, "edit"])->name("edit");
         Route::post("/update/{id}", [CategoryController::class, "update"]);
         Route::get("/destroy/{id}", [CategoryController::class, "destroy"]);
+    });
+    Route::prefix("product")->name("product.")->group(function() {
+        Route::get("/", [ProductController::class, "index"])->name("index");
     });
 });
 

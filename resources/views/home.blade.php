@@ -17,10 +17,10 @@
                 <x-antdesign-tag-o class="h-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Kategori</p>
             </a>
-            <div class="flex flex-row items-center gap-4 p-2">
+            <a href="/product" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'product' ? 'active-navbar' : '' }}">
                 <x-bi-box class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Produk</p>
-            </div>
+            </a>
             <div class="flex flex-row items-center gap-4 p-2">
                 <x-bi-bag class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Transaksi</p>
