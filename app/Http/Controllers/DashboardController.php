@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class DashboardController extends Controller
 {
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $category_count = Category::count();
-        return view("dashboard", ["category_count" => $category_count]);
+        $product_count = Product::count();
+        return view("dashboard", ["category_count" => $category_count, "product_count" => $product_count]);
     }
 }
