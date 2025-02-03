@@ -37,16 +37,10 @@
                     </a>
                 </div>
             </div>
-            <script>
-                function toggleTransactionMenu() {
-                    var menu = document.getElementById('transaction-menu');
-                    menu.classList.toggle('hidden');
-                }
-            </script>
-            <div class="flex flex-row items-center gap-4 p-2">
+            <a href="/report" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'report' ? 'active-navbar' : '' }}">
                 <x-antdesign-calendar-o class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Laporan</p>
-            </div>
+            </a>
             <div class="flex flex-row items-center gap-4 p-2">
                 <x-bi-sliders class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Setting</p>
@@ -64,4 +58,10 @@
         @yield("home_content")
     </div>
 </div>
+<script>
+    function toggleTransactionMenu() {
+        var menu = document.getElementById('transaction-menu');
+        menu.classList.toggle('hidden');
+    }
+</script>
 @endsection

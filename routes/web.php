@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\DefaultViewData;
 
@@ -34,6 +35,9 @@ Route::middleware(([
         Route::get("/purchase", [TransactionController::class, "purchase"])->name("purchase");
         Route::post("/sales/store", [TransactionController::class, "store"]);
         Route::post("/purchase/store", [TransactionController::class, "purchase_store"]);
+    });
+    Route::prefix("report")->name("report.")->group(function() {
+        Route::get("/", [ReportController::class, "index"]);
     });
 });
 
