@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="flex-1 bg-[#F3F3F3] h-[100vh] pl-2">
+    <div class="flex-1 bg-[#F3F3F3]  pl-2">
         <div class="h-[50px] bg-white flex flex-row justify-between px-5 items-center">
             <p>{{ $web_title }}</p>
             <a href="/auth/logout" class="flex gap-2">
