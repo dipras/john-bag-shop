@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section("content")
-<div class="max-w-md m-auto pt-[180px]">
-    <h1 class="text-center text-6xl font-bold text-[#434B6A]">JOHN BAG SHOP</h1>
+<div class="max-w-md m-auto pt-[100px]">
+    <img src="{{asset('/logo.png')}}" class="m-auto" alt="">
     <form action="/auth/signin" method="POST">
         @csrf
         <div class="flex flex-col gap-8 mt-12">
