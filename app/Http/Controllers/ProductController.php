@@ -38,7 +38,6 @@ class ProductController extends Controller
             'category_id' => 'required|integer|exists:category,id',
             'buy_price' => 'integer|required',
             'sell_price' => 'integer|required',
-            'stock' => 'integer|required',
         ]);
     
         $product = new Product();
@@ -46,7 +45,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->buy_price = $request->buy_price;
         $product->sell_price = $request->sell_price;
-        $product->stock = $request->stock;
+        $product->stock = 0;
         $product->user_id = Auth::user()->id;
         $product->save();
     
@@ -91,7 +90,6 @@ class ProductController extends Controller
             'category_id' => 'integer|exists:category,id',
             'buy_price' => 'integer',
             'sell_price' => 'integer',
-            'stock' => 'integer',
         ]);
 
         foreach ($validatedData as $key => $value) {

@@ -42,13 +42,6 @@
                 <span class="text-red-500 text-sm">{{ $errors->first('sell_price') }}</span>
                 @endif
             </div>
-            <div>
-                <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
-                <input type="number" id="stock" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="product name" name="stock" value="{{ isset($product) ? $product->stock : old('stock') }}" required />
-                @if ($errors->has('stock'))
-                <span class="text-red-500 text-sm">{{ $errors->first('stock') }}</span>
-                @endif
-            </div>
             <div class="flex flex-row gap-2 justify-end">
                 <button type="submit" class="bg-[{{ isset($product) ? '#F2A007' : '#19427D' }}] text-white px-6 py-2 flex text-md items-center gap-1 rounded">
                     <x-bi-plus class="w-8 h-8" />
