@@ -21,10 +21,28 @@
                 <x-bi-box class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Produk</p>
             </a>
-            <a href="/transaction" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'transaction' ? 'active-navbar' : '' }}">
-                <x-bi-bag class="h-8 w-8" fill="#434B6A" />
-                <p class="text-xl text-[#434B6A]">Transaksi</p>
-            </a>
+            <div class="flex flex-col w-full gap-4 {{ explode('.', Route::currentRouteName())[0] == 'transaction' ? 'active-navbar' : '' }}">
+                <div class="flex flex-row items-center gap-4 p-2 cursor-pointer" onclick="toggleTransactionMenu()">
+                    <x-bi-bag class="h-8 w-8" fill="#434B6A" />
+                    <p class="text-xl text-[#434B6A]">Transaksi</p>
+                </div>
+                <div id="transaction-menu" class="flex flex-col gap-4 pl-8 hidden">
+                    <a href="/transaction/sales" class="flex flex-row items-center gap-4 p-2">
+                        <x-bi-bag class="h-8 w-8" fill="#434B6A" />
+                        <p class="text-xl text-[#434B6A]">Transaksi Penjualan</p>
+                    </a>
+                    <a href="/transaction/purchase" class="flex flex-row items-center gap-4 p-2">
+                        <x-bi-bag class="h-8 w-8" fill="#434B6A" />
+                        <p class="text-xl text-[#434B6A]">Transaksi Pembelian</p>
+                    </a>
+                </div>
+            </div>
+            <script>
+                function toggleTransactionMenu() {
+                    var menu = document.getElementById('transaction-menu');
+                    menu.classList.toggle('hidden');
+                }
+            </script>
             <div class="flex flex-row items-center gap-4 p-2">
                 <x-antdesign-calendar-o class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Laporan</p>

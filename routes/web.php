@@ -30,8 +30,8 @@ Route::middleware(([
         Route::get("/destroy/{id}", [ProductController::class, "destroy"]);
     });
     Route::prefix("transaction")->name("transaction.")->group(function() {
-        Route::get("/", [TransactionController::class, "index"])->name("index");
-        Route::post("/store", [TransactionController::class, "store"]);
+        Route::get("/sales", [TransactionController::class, "index"])->name("index");
+        Route::post("/sales/store", [TransactionController::class, "store"]);
     });
 });
 
