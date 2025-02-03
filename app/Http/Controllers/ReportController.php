@@ -12,8 +12,8 @@ class ReportController extends Controller
         $total_sell_price = 0;
         $total_buy_price = 0;
         foreach($transactions as $tran) {
-            $total_buy_price += $tran->product->buy_price;
-            $total_sell_price += $tran->product->sell_price;
+            $total_buy_price += $tran->buy_price * $tran->count;
+            $total_sell_price += $tran->sell_price * $tran->count;
         }
         $totalBenefit = $total_sell_price - $total_buy_price;
         return view("report/index", ["transactions" => $transactions, "total_sell" => $total_sell, "total_buy_price" => $total_buy_price, "total_sell_price" => $total_sell_price, "totalBenefit" => $totalBenefit]);

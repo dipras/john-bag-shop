@@ -37,11 +37,15 @@ class TransactionController extends Controller
             $transaction->product_id = $data['id'];
             $transaction->user_id = Auth::user()->id;
             $transaction->count = $data['total'];
-            $transaction->save();
-
+            
             $product = Product::where("id", "=", $data['id'])->first();
             $product->stock = $product->stock - $data['total'];
+            
+            $transaction->buy_price = $product->buy_price;
+            $transaction->sell_price = $product->sell_price;
+
             $product->save();
+            $transaction->save();
         }
         return json_encode([
             "status" => "success"
