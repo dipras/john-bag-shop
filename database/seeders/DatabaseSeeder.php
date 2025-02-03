@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\WebInfo;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +18,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
+
+        if (!User::where('email', 'admin@example.com')->exists()) {
+            User::create([
+            'name' => 'Rega Admin',
+            'email' => 'admin@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+            "role_id" => 1
+            ]);
+        }
+
+        if (!User::where('email', 'karyawan@example.com')->exists()) {
+            User::create([
+            'name' => 'Rega Karyawan',
+            'email' => 'karyawan@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+            "role_id" => 2
+            ]);
+        }
         
         
         if (!WebInfo::where('name', 'web_title')->exists()) {
