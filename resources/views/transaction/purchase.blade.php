@@ -16,7 +16,7 @@
         <span class="block sm:inline">{{ session('error') }}</span>
     </div>
     @endif
-    <h1 class="text-4xl text-[#434B6A] font-medium">Data Transactions</h1>
+    <h1 class="text-4xl text-[#434B6A] font-medium">Transaksi Pembelian</h1>
     <button class="bg-[#19427D] text-white px-6 py-2 flex text-md items-center gap-1 rounded self-start" id="checkout-btn">
         <x-bi-bag class="w-4 h-4" />
         Checkout
@@ -41,9 +41,9 @@
                     <tr>
                         <td>{{$prod->name}}</td>
                         <td>{{$prod->category->name}}</td>
-                        <td>{{$prod->sell_price}}</td>
+                        <td>Rp. {{number_format($prod->sell_price, 2, ",", ".")}}</td>
                         <td>
-                            <button class="bg-[#97CF8A] text-white px-2 py-1 rounded addToCart" data-id="{{$prod->id}}" data-name="{{$prod->name}}" data-category="{{$prod->category->name}}" data-price="{{$prod->sell_price}}" id="addToCart-{{$prod->id}}" data-stock="{{$prod->stock}}">Add to cart</button>
+                            <button class="bg-[#97CF8A] text-white px-2 py-1 rounded addToCart" data-id="{{$prod->id}}" data-name="{{$prod->name}}" data-category="{{$prod->category->name}}" data-price="{{$prod->buy_price}}" id="addToCart-{{$prod->id}}" data-stock="{{$prod->stock}}">Add to cart</button>
                         </td>
                     </tr>
                     @endforeach
@@ -94,16 +94,6 @@
             </table>
         </div>
         <p>Total yang harus dibayarkan: <span id="total-price"></span></p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
-            <div>
-                <label for="input-price" class="block mb-2 text-sm font-medium text-gray-900">Masukan uang</label>
-                <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Masukan uang" id="input-price" />
-            </div>
-            <div>
-                <label for="cashback" class="block mb-2 text-sm font-medium text-gray-900">Total pengembalian</label>
-                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Total pengembalian" disabled id="cashback" />
-            </div>
-        </div>
         <div class="flex flex-row justify-end mt-4 gap-4">
             <button class="bg-[#19427D] text-white px-6 py-2 flex text-md items-center gap-1 rounded" id="close-modal">
                 Close
@@ -121,8 +111,6 @@
     const cartData = document.querySelector("#cart-data");
     const cartModal = document.querySelector("#cart-modal");
     const totalPrice = document.querySelector("#total-price");
-    const inputPrice = document.querySelector("#input-price");
-    const cashback = document.querySelector("#cashback");
     const payBtn = document.querySelector("#pay-btn");
     let cartTable;
     let total = 0;
@@ -184,7 +172,7 @@
                     <tr id="data-${dat.id}">
                         <td>${dat.name}</td>
                         <td>${dat.category}</td>
-                        <td><input type="number" value="1" class="w-full border-none text-center" id="tty-${dat.id}" onchange="changetty(${dat.id}, ${dat.price}, ${index})" min="1" max="${dat.stock}" /></td>
+                        <td><input type="number" value="1" class="w-full border-none text-center" id="tty-${dat.id}" onchange="changetty(${dat.id}, ${dat.price}, ${index})" min="1" /></td>
                         <td id="price-${dat.id}">${rupiah(dat.price)}</td>
                         <td>
                             <button class="bg-[#E3342F] text-white px-2 py-1 rounded remove-data" onclick="handleRemoveData(${dat.id})">Remove</button>
@@ -231,22 +219,14 @@
         }).format(number);
     }
 
-    inputPrice.addEventListener("change", e => {
-        cashback.value = rupiah(e.target.value - total);
-    });
-
     payBtn.addEventListener("click", () => {
-        if (total > inputPrice.value) {
-            alert("Uang yang dimasukan kurang!");
-            return;
-        }
 
         fetchData();
     });
 
     const fetchData = async () => {
         try {
-            const result = await fetch('/transaction/store', {
+            const result = await fetch('/transaction/purchase/store', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -262,10 +242,9 @@
 
             alert("Transaksi berhasil dibuat!");
             payBtn.setAttribute("disabled", true);
-            closeModalBtn.removeEventListener("click");
             closeModalBtn.addEventListener("click", () => window.location.reload())
         } catch (error) {
-            alert("Ada suatu error yang terjadi");
+            alert("Ada sesuatu yang error")
         }
     }
 </script>

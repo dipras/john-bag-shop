@@ -14,10 +14,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
         $products = Product::where("stock", ">", 0)->get();
         
-        return view("transaction/index", ["transactions" => $transactions, 'products' => $products]);
+        return view("transaction/sales", ['products' => $products]);
     }
 
     /**
@@ -52,17 +51,26 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function purchase()
     {
-        //
+        $products = Product::all();
+        
+        return view("transaction/purchase", ['products' => $products]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function purchase_store(Request $request)
     {
-        //
+        foreach($request->cart as $data) {
+            $product = Product::where("id", "=", $data['id'])->first();
+            $product->stock = $product->stock + $data['total'];
+            $product->save();
+        }
+        return json_encode([
+            "status" => "success"
+        ]);
     }
 
     /**
