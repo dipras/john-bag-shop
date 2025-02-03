@@ -31,6 +31,7 @@
                         <th>Category</th>
                         <th>Harga Jual</th>
                         <th>Harga Beli</th>
+                        <th>Stock Terjual</th>
                         <th>User</th>
                         <th>Dibuat pada</th>
                     </tr>
@@ -44,6 +45,7 @@
                         <td>{{$tran->product->category->name}}</td>
                         <td>Rp. {{number_format($tran->product->sell_price, 2, ",", ".")}}</td>
                         <td>Rp. {{number_format($tran->product->buy_price, 2, ",", ".")}}</td>
+                        <td>{{$tran->count}}</td>
                         <td>{{$tran->user->name}}</td>
                         <td>{{$tran->created_at}}</td>
                     </tr>
