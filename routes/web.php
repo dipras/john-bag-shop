@@ -15,7 +15,7 @@ Route::middleware(([
     DefaultViewData::class
 ]))->group(function() {
     Route::get('/', [DashboardController::class, "index"])->name("dashboard");
-    Route::prefix("category")->name("category.")->group(function() {
+    Route::prefix("category")->name("category.")->middleware("can:admin")->group(function() {
         Route::get("/", [CategoryController::class, "index"])->name("index");
         Route::get("/create", [CategoryController::class, "create"])->name("create");
         Route::post("/store", [CategoryController::class, "store"]);
@@ -37,11 +37,11 @@ Route::middleware(([
         Route::post("/sales/store", [TransactionController::class, "store"]);
         Route::post("/purchase/store", [TransactionController::class, "purchase_store"]);
     });
-    Route::prefix("setting")->name("setting.")->group(function() {
+    Route::prefix("setting")->name("setting.")->middleware("can:admin")->group(function() {
         Route::get("/", [SettingController::class, "index"])->name("index");
         Route::post("/", [SettingController::class, "store"])->name("store");
     });
-    Route::prefix("report")->name("report.")->group(function() {
+    Route::prefix("report")->name("report.")->middleware("can:admin")->group(function() {
         Route::get("/", [ReportController::class, "index"]);
     });
 });

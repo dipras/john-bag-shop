@@ -16,10 +16,12 @@
                 <x-antdesign-home-o class="h-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Dashboard</p>
             </a>
+            @can("admin")
             <a href="/category" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'category' ? 'active-navbar' : '' }}">
                 <x-antdesign-tag-o class="h-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Kategori</p>
             </a>
+            @endcan
             <a href="/product" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'product' ? 'active-navbar' : '' }}">
                 <x-bi-box class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Produk</p>
@@ -40,6 +42,7 @@
                     </a>
                 </div>
             </div>
+            @can("admin")
             <a href="/report" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'report' ? 'active-navbar' : '' }}">
                 <x-antdesign-calendar-o class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Laporan</p>
@@ -48,13 +51,14 @@
                 <x-bi-sliders class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Setting</p>
             </a>
+            @endcan
         </div>
     </div>
-    <div class="flex-1 bg-[#F3F3F3] pl-2 w-full">
+    <div class="flex-1 bg-[#F3F3F3] pl-2 w-full min-h-[100vh]">
         <div class="h-[50px] bg-white flex flex-row justify-between px-5 items-center">
             <div class="flex flex-row gap-2">
                 <x-bi-list class="w-8 h-8 cursor-pointer block md:hidden" id="open-sidebar" />
-                <p>{{ $web_title }}</p>
+                <p>{{ $web_title }} | {{$user_info->role == 1 ? "ADMIN" : "KARYAWAN"}}</p>
             </div>
             <a href="/auth/logout" class="flex gap-2">
                 <x-tabler-logout />
