@@ -21,10 +21,10 @@
                 <x-bi-box class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Produk</p>
             </a>
-            <div class="flex flex-row items-center gap-4 p-2">
+            <a href="/transaction" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'transaction' ? 'active-navbar' : '' }}">
                 <x-bi-bag class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Transaksi</p>
-            </div>
+            </a>
             <div class="flex flex-row items-center gap-4 p-2">
                 <x-antdesign-calendar-o class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Laporan</p>

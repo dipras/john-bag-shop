@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\DefaultViewData;
 
 Route::middleware(([
@@ -27,6 +28,10 @@ Route::middleware(([
         Route::get("/edit/{id}", [ProductController::class, "edit"])->name("edit");
         Route::post("/update/{id}", [ProductController::class, "update"]);
         Route::get("/destroy/{id}", [ProductController::class, "destroy"]);
+    });
+    Route::prefix("transaction")->name("transaction.")->group(function() {
+        Route::get("/", [TransactionController::class, "index"])->name("index");
+        Route::post("/store", [TransactionController::class, "store"]);
     });
 });
 
