@@ -15,8 +15,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $current_user =  Auth::user();
 
-        return view("product/index", ["products" => $products]);
+        return view("product/index", ["products" => $products, "current_user" => $current_user]);
     }
 
     /**

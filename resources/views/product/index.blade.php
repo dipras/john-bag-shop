@@ -33,6 +33,7 @@
                         <th>Nama Produk</th>
                         <th>Kategori</th>
                         <th>Stock</th>
+                        <th>User</th>
                         <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Dibuat pada</th>
@@ -47,13 +48,16 @@
                         <td>{{$pro->name}}</td>
                         <td>{{$pro->category->name}}</td>
                         <td>{{$pro->stock}}</td>
+                        <td>{{$pro->user->name}}</td>
                         <td>{{$pro->buy_price}}</td>
                         <td>{{$pro->sell_price}}</td>
                         <td>{{$pro->created_at}}</td>
                         <td>{{$pro->updated_at}}</td>
                         <td>
+                            @if($current_user->role_id == 1 || $pro->user->id == $current_user->id)
                             <a href="/product/edit/{{$pro->id}}" class="bg-[#F2A007] text-white px-2 py-1 rounded">Edit</a>
                             <button class="bg-[#EF3A25] text-white px-2 py-1 rounded" onclick="confirmDelete('/product/destroy/{{$pro->id}}')">Delete</button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
