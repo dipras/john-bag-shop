@@ -44,10 +44,10 @@
                 <x-antdesign-calendar-o class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Laporan</p>
             </a>
-            <div class="flex flex-row items-center gap-4 p-2">
+            <a href="/setting" class="flex flex-row items-center gap-4 p-2 {{ explode('.', Route::currentRouteName())[0] == 'setting' ? 'active-navbar' : '' }}">
                 <x-bi-sliders class="h-8 w-8" fill="#434B6A" />
                 <p class="text-xl text-[#434B6A]">Setting</p>
-            </div>
+            </a>
         </div>
     </div>
     <div class="flex-1 bg-[#F3F3F3] pl-2 w-full">
