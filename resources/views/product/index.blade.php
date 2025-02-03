@@ -15,7 +15,7 @@
         <span class="block sm:inline">{{ session('error') }}</span>
     </div>
     @endif
-    <h1 class="text-4xl text-[#434B6A] font-medium">Data Kategori</h1>
+    <h1 class="text-4xl text-[#434B6A] font-medium">Data Produk</h1>
     <a href="/product/create" class="bg-[#19427D] text-white px-6 py-2 flex text-md items-center gap-1 rounded self-start">
         <x-bi-plus class="w-8 h-8" />
         Insert Data
