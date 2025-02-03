@@ -16,7 +16,7 @@
                 @enderror
             </div>
             <div>
-                <input type="text" id="password"
+                <input type="password" id="password"
                     class="border-b-2 border-[#434B6A] text-gray-900 text-sm block w-full p-2.5 outline-none"
                     placeholder="PASSWORD" name="password" />
 
